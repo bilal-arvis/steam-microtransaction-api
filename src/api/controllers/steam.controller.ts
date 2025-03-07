@@ -71,7 +71,7 @@ export default {
   },
 
   initPurchase: async (req: Request, res: Response): Promise<void> => {
-    const { appId, category, itemDescription, itemId, orderId, steamId, price }: ISteamOpenTransaction =
+    const { appId, category, itemDescription, itemId, orderId, steamId, amount }: ISteamOpenTransaction =
       req.body;
 
     if (!appId || !category || !itemDescription || !itemId || !orderId || !steamId) {
@@ -93,7 +93,7 @@ export default {
       const data = await req.steam.steamMicrotransactionInitWithOneItem({
         appId,
         category,
-        amount: price,
+        amount: amount,
         itemDescription,
         itemId,
         orderId,
