@@ -71,10 +71,10 @@ export default {
   },
 
   initPurchase: async (req: Request, res: Response): Promise<void> => {
-    const { appId, category, itemDescription, itemId, orderId, steamId, amount }: ISteamOpenTransaction =
+    const { appId, category, itemDescription, orderId, steamId, amount }: ISteamOpenTransaction =
       req.body;
 
-    if (!appId || !category || !itemDescription || !itemId || !orderId || !steamId) {
+    if (!appId || !category || !itemDescription || !orderId || !steamId) {
       res.status(400).json({ error: 'Missing fields' });
       return;
     }
@@ -95,7 +95,6 @@ export default {
         category,
         amount: amount,
         itemDescription,
-        itemId,
         orderId,
         steamId,
       });

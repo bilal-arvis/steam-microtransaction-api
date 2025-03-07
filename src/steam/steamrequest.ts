@@ -91,7 +91,6 @@ export default class SteamRequest {
       currency: constants.currency,
       language: constants.locale,
       usersession: 'client',
-      'itemid[0]': transaction.itemId,
       'qty[0]': '1',
       'amount[0]': transaction.amount + constants.currency,
       'description[0]': transaction.itemDescription,

@@ -29,7 +29,6 @@ export declare interface ISteamTransaction extends ISteamOrder {
 export declare interface ISteamOpenTransaction extends ISteamUserRequest {
   orderId: string;
   amount: number;
-  itemId: string;
   itemDescription: string;
   category: string;
 }
