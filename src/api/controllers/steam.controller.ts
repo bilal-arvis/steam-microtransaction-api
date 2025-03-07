@@ -1,8 +1,5 @@
-import constants from '@src/constants';
 import { ISteamOpenTransaction, ISteamTransaction } from '@src/steam/steaminterfaces';
 import { Request, Response } from 'express';
-
-import { chain } from 'lodash';
 
 // Improving type annotations for errors and response objects
 interface CustomError extends Error {
@@ -74,7 +71,7 @@ export default {
   },
 
   initPurchase: async (req: Request, res: Response): Promise<void> => {
-    const { appId, category, itemDescription, itemId, orderId, steamId }: ISteamOpenTransaction =
+    const { appId, category, itemDescription, itemId, orderId, steamId, price }: ISteamOpenTransaction =
       req.body;
 
     if (!appId || !category || !itemDescription || !itemId || !orderId || !steamId) {
@@ -82,7 +79,7 @@ export default {
       return;
     }
 
-    const product = chain(constants.products)
+    /*const product = chain(constants.products)
       .filter(p => p.id.toString() == itemId)
       .first()
       .value();
@@ -90,13 +87,13 @@ export default {
     if (!product) {
       res.status(400).json({ error: 'ItemId not found in the game database' });
       return;
-    }
+    }*/
 
     try {
       const data = await req.steam.steamMicrotransactionInitWithOneItem({
         appId,
         category,
-        amount: product.price,
+        amount: price,
         itemDescription,
         itemId,
         orderId,
